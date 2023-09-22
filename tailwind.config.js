@@ -7,7 +7,7 @@ export default {
         quicksand: ['Quicksand', 'system-ui', 'sans-serif']
       },
       backgroundImage: {
-        room: "url('./src/assets/room.png')"
+        room: "url('/src/assets/room.png')"
       },
       colors: {
         gray: {
