@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   GoogleMap,
   InfoWindow,
@@ -7,7 +9,7 @@ import {
 import { useState } from 'react';
 
 export function Map() {
-  const { isLoaded, loadError } = useJsApiLoader({
+  const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: 'AIzaSyADknkXBLCKflOEV1netOfXEwDj5ehSvNI'
   });
 
@@ -23,7 +25,7 @@ export function Map() {
   ];
 
   const [activeInfoWindow, setActiveInfoWindow] = useState(null);
-  const [markers, setMarkers] = useState(initialMarkers);
+  const [markers] = useState(initialMarkers);
 
   const containerStyle = {
     width: '100%',
@@ -39,12 +41,12 @@ export function Map() {
     console.log(event?.latLng?.lat(), event?.latLng?.lng());
   };
 
-  const markerClicked = (marker, index) => {
+  const markerClicked = (marker: any, index: any) => {
     setActiveInfoWindow(index);
     console.log(marker, index);
   };
 
-  const markerDragEnd = (event, index) => {
+  const markerDragEnd = (event: any, _index: any) => {
     console.log(event.latLng.lat(), event.latLng.lng());
   };
 
@@ -63,7 +65,7 @@ export function Map() {
             label={marker.label}
             draggable={marker.draggable}
             onDragEnd={(event) => markerDragEnd(event, index)}
-            onClick={(event: google.maps.MapMouseEvent) =>
+            onClick={(_event: google.maps.MapMouseEvent) =>
               markerClicked(marker, index)
             }
           >
