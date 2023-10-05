@@ -27,7 +27,7 @@ export function ReviewCard({ name, date, description }: ReviewCardProps) {
           <RxStarFilled />
         </div>
       </div>
-      <p className="mt-6 text-[15px] flex-grow overflow-hidden overflow-ellipsis">
+      <p className="mt-6 text-[15px] text-left flex-grow overflow-hidden overflow-ellipsis">
         {description}
       </p>
     </div>
