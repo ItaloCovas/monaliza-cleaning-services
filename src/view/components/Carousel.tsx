@@ -32,15 +32,15 @@ export function Carousel({ slides, className }: CarouselProps) {
   return (
     <div
       className={cn(
-        'max-w-[560px] h-[400px] w-full m-auto relative group rounded-2xl',
+        'w-[300px] h-[400px] relative group rounded-2xl',
         className
       )}
     >
-      <button className=" absolute top-[50%] -translate-x-0 translate-y-[-50%] left-[-50px] text-2xl rounded-full p-1 bg-white text-blue-0 cursor-pointer">
-        <FiArrowLeft onClick={prevSlide} size={30} />
+      <button className=" absolute top-[50%] -translate-x-0 translate-y-[-50%] left-[-20px] md:left-[-50px] text-2xl rounded-full p-1 bg-white text-blue-0 cursor-pointer">
+        <FiArrowLeft onClick={prevSlide} size={25} />
       </button>
-      <button className=" absolute top-[50%] -translate-x-0 translate-y-[-50%] right-[-50px] text-2xl rounded-full p-1 bg-white text-blue-0 cursor-pointer">
-        <FiArrowRight onClick={nextSlide} size={30} />
+      <button className=" absolute top-[50%] -translate-x-0 translate-y-[-50%] right-[-20px] md:right-[-50px] text-2xl rounded-full p-1 bg-white text-blue-0 cursor-pointer">
+        <FiArrowRight onClick={nextSlide} size={25} />
       </button>
       <div
         style={{

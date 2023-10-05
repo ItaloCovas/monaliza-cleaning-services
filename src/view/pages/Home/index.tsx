@@ -28,8 +28,9 @@ import { Divider } from '../../components/Divider';
 import { Carousel } from '../../components/Carousel';
 import { ReviewCard } from '../../components/ReviewCard';
 import { useState } from 'react';
-import { RxChevronLeft, RxChevronRight } from 'react-icons/rx';
+import { RxStarFilled } from 'react-icons/rx';
 import { useWindowWidth } from '../../../app/hooks/useWindowWidth';
+import { SwiperButton } from '../../components/SwiperButton';
 
 export interface SliderProps {
   isBeginning: boolean;
@@ -38,7 +39,6 @@ export interface SliderProps {
 }
 
 export function Home() {
-  const swiper = useSwiper();
   const windowWidth = useWindowWidth();
 
   const [sliderState, setSliderState] = useState<SliderProps>({
@@ -52,7 +52,10 @@ export function Home() {
     },
     {
       url: after1
-    },
+    }
+  ];
+
+  const slidesTwo = [
     {
       url: before2
     },
@@ -89,8 +92,9 @@ export function Home() {
         <h2 className="text-2xl text-center font-bold">See for yourself</h2>
       </div>
 
-      <div className="pb-20 flex justify-center items-center relative  bg-gray-100">
+      <div className="pb-20 px-10 flex justify-center items-center relative gap-x-60 gap-y-20 flex-wrap bg-gray-100">
         <Carousel slides={slides} />
+        <Carousel slides={slidesTwo} />
       </div>
 
       <div className="flex justify-center flex-col items-center lg:flex-row lg:gap-x-20 pt-20 gap-4 w-full p-20 bg-gray-0">
@@ -127,7 +131,11 @@ export function Home() {
       </div>
 
       <div className="p-20 flex flex-col gap-20 justify-center lg:justify-start relative bg-gray-100">
-        <h2 className="text-center text-3xl font-bold">Reviews</h2>
+        <div className="flex  items-center justify-center gap-4 text-yellow-500">
+          <RxStarFilled className="text-2xl" />
+          <h2 className="text-center text-3xl font-bold text-black">Reviews</h2>
+          <RxStarFilled className="text-2xl" />
+        </div>
         <div className="w-full">
           <Swiper
             slidesPerView={windowWidth >= 500 ? 'auto' : 1.1}
@@ -139,8 +147,12 @@ export function Home() {
               FreeMode,
               Thumbs
             ]}
-            autoplay={true}
-            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: true,
+              pauseOnMouseEnter: true
+            }}
+            className="!static"
             spaceBetween={20}
             onSlideChange={(swiper) => {
               setSliderState({
@@ -149,7 +161,7 @@ export function Home() {
               });
             }}
           >
-            <SwiperSlide className="!w-fit">
+            <SwiperSlide className="!w-fit !static">
               <ReviewCard
                 name="Hillary Stern"
                 date="Set, 2023"
@@ -219,21 +231,20 @@ export function Home() {
               towels. Always sweet and friendly as well."
               />
             </SwiperSlide>
+            <SwiperButton
+              disabled={sliderState.isEnd}
+              icon="right"
+              isNext
+              className="right-0"
+            />
+
+            <SwiperButton
+              disabled={sliderState.isBeginning}
+              icon="left"
+              isNext={false}
+              className="left-0"
+            />
           </Swiper>
-          <button
-            className="py-3 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40 absolute right-0 top-1/2 -translate-y-1/2 trans z-[99]"
-            onClick={() => swiper.slideNext()}
-            disabled={sliderState.isEnd}
-          >
-            <RxChevronRight className=" text-blue-0 w-12 h-12" />
-          </button>
-          <button
-            className="py-3 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40 absolute top-1/2 -translate-y-1/2 left-0  z-[99]"
-            onClick={() => swiper.slidePrev()}
-            disabled={sliderState.isBeginning}
-          >
-            <RxChevronLeft className=" text-blue-0 w-12 h-12" />
-          </button>
         </div>
         <Link
           to="/reviews"
