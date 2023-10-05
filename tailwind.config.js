@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{html,tsx}'],
   theme: {
     extend: {
+      screens: {
+        lg: '1100px'
+      },
       fontFamily: {
         quicksand: ['Quicksand', 'system-ui', 'sans-serif']
       },

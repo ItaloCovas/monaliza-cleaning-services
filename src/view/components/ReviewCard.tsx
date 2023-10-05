@@ -11,9 +11,8 @@ interface ReviewCardProps {
 
 export function ReviewCard({ name, date, description }: ReviewCardProps) {
   return (
-    <div className="flex flex-col bg-white px-6 py-4 max-w-[310px] rounded-xl">
+    <div className="flex flex-col bg-white px-6 py-4 max-w-[310px] h-[380px] rounded-xl">
       <h2 className="font-bold">{name}</h2>
-
       <div className="flex items-center justify-between mt-4 flex-wrap gap-y-4">
         <div className="text-3xl flex gap-2">
           <FcGoogle />
@@ -27,7 +26,7 @@ export function ReviewCard({ name, date, description }: ReviewCardProps) {
           <RxStarFilled />
         </div>
       </div>
-      <p className="mt-6 text-[15px] text-left flex-grow overflow-hidden overflow-ellipsis">
+      <p className="text-[15px] text-left flex-grow overflow-hidden  mt-6 overflow-ellipsis h-fit">
         {description}
       </p>
     </div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   Navigation,
   Autoplay,
@@ -22,6 +22,7 @@ import before1 from '../../../assets/before1.jpeg';
 import after1 from '../../../assets/after1.jpeg';
 import before2 from '../../../assets/before2.jpeg';
 import after2 from '../../../assets/after2.jpeg';
+import guarantee from '../../../assets/guarantee.png';
 
 import { Card } from '../../components/Card';
 import { Divider } from '../../components/Divider';
@@ -31,6 +32,7 @@ import { useState } from 'react';
 import { RxStarFilled } from 'react-icons/rx';
 import { useWindowWidth } from '../../../app/hooks/useWindowWidth';
 import { SwiperButton } from '../../components/SwiperButton';
+import { reviews } from '../../../app/constants/reviews';
 
 export interface SliderProps {
   isBeginning: boolean;
@@ -121,6 +123,12 @@ export function Home() {
             </li>
           </ul>
 
+          <img
+            src={guarantee}
+            alt="Guarantee sign"
+            className="w-40 h-40 mb-10"
+          />
+
           <Link
             to="/services"
             className="text-2xl underline font-bold text-blue-0 mt-2"
@@ -161,76 +169,18 @@ export function Home() {
               });
             }}
           >
-            <SwiperSlide className="!w-fit !static">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
+            {reviews.map((review) => {
+              return (
+                <SwiperSlide key={review.name} className="!w-fit !static">
+                  <ReviewCard
+                    name={review.name}
+                    date={review.date}
+                    description={review.description}
+                  />
+                </SwiperSlide>
+              );
+            })}
+
             <SwiperButton
               disabled={sliderState.isEnd}
               icon="right"

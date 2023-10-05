@@ -6,7 +6,6 @@ import { NavigationLink } from '../../components/NavigationLink';
 import whatsapp from '../../../assets/icons/whatsapp.svg';
 import facebook from '../../../assets/icons/facebook.svg';
 import logo from '../../../assets/logo.png';
-
 export function PageLayout() {
   const { pathname } = useLocation();
 

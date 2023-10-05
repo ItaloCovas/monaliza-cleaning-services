@@ -23,12 +23,14 @@ import before5 from '../../../assets/before5.jpeg';
 import after5 from '../../../assets/after5.jpeg';
 import before6 from '../../../assets/before6.jpeg';
 import after6 from '../../../assets/after6.jpeg';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState } from 'react';
 import { SliderProps } from '../Home';
 import { ReviewCard } from '../../components/ReviewCard';
-import { RxChevronLeft, RxChevronRight } from 'react-icons/rx';
+import { RxStarFilled } from 'react-icons/rx';
 import { useWindowWidth } from '../../../app/hooks/useWindowWidth';
+import { SwiperButton } from '../../components/SwiperButton';
+import { reviews } from '../../../app/constants/reviews';
 
 export function Reviews() {
   const slidesOne = [
@@ -85,7 +87,6 @@ export function Reviews() {
     }
   ];
 
-  const swiper = useSwiper();
   const windowWidth = useWindowWidth();
 
   const [sliderState, setSliderState] = useState<SliderProps>({
@@ -99,7 +100,7 @@ export function Reviews() {
         Before and After Galery
       </h1>
 
-      <div className="flex justify-center items-center flex-wrap gap-x-4 gap-y-10 lg:gap-y-20 relative p-20 pt-10 bg-gray-0">
+      <div className="py-20 px-10 flex justify-center items-center relative gap-x-60 gap-y-20 flex-wrap bg-gray-0">
         <Carousel slides={slidesOne} />
         <Carousel slides={slidesTwo} />
         <Carousel slides={slidesThree} />
@@ -109,7 +110,11 @@ export function Reviews() {
       </div>
 
       <div className="p-20 flex flex-col gap-20 justify-center lg:justify-start relative bg-gray-100">
-        <h2 className="text-center text-3xl font-bold">Reviews</h2>
+        <div className="flex  items-center justify-center gap-4 text-yellow-500">
+          <RxStarFilled className="text-2xl" />
+          <h2 className="text-center text-3xl font-bold text-black">Reviews</h2>
+          <RxStarFilled className="text-2xl" />
+        </div>
         <div className="w-full">
           <Swiper
             slidesPerView={windowWidth >= 500 ? 'auto' : 1.1}
@@ -121,8 +126,12 @@ export function Reviews() {
               FreeMode,
               Thumbs
             ]}
-            autoplay={{ disableOnInteraction: true, delay: 2000 }}
-            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: true,
+              pauseOnMouseEnter: true
+            }}
+            className="!static"
             spaceBetween={20}
             onSlideChange={(swiper) => {
               setSliderState({
@@ -131,91 +140,32 @@ export function Reviews() {
               });
             }}
           >
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
-            <SwiperSlide className="!w-fit">
-              <ReviewCard
-                name="Hillary Stern"
-                date="Set, 2023"
-                description="Monaliza is an excellent cleaner and company. They are timely, detail
-              oriented, professional and consistent. I love the little details of
-              creative flowers and designs they make from the toilet paper and paper
-              towels. Always sweet and friendly as well."
-              />
-            </SwiperSlide>
+            {reviews.map((review) => {
+              return (
+                <SwiperSlide key={review.name} className="!w-fit !static">
+                  <ReviewCard
+                    name={review.name}
+                    date={review.date}
+                    description={review.description}
+                  />
+                </SwiperSlide>
+              );
+            })}
+
+            <SwiperButton
+              disabled={sliderState.isEnd}
+              icon="right"
+              isNext
+              className="right-0 top-[60%]"
+            />
+
+            <SwiperButton
+              disabled={sliderState.isBeginning}
+              icon="left"
+              isNext={false}
+              className="left-0 top-[60%]"
+            />
           </Swiper>
-          <button
-            className="py-2 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40 absolute right-0 top-[60%] -translate-y-[60%] trans z-[99]"
-            onClick={() => swiper.slideNext()}
-            disabled={sliderState.isEnd}
-          >
-            <RxChevronRight className=" text-blue-0 w-12 h-12" />
-          </button>
-          <button
-            className="py-2 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40 absolute top-[60%] -translate-y-[60%] left-0  z-[99]"
-            onClick={() => swiper.slidePrev()}
-            disabled={sliderState.isBeginning}
-          >
-            <RxChevronLeft className=" text-blue-0 w-12 h-12" />
-          </button>
         </div>
       </div>
     </section>
