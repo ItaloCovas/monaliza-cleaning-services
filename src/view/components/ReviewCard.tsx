@@ -11,7 +11,7 @@ interface ReviewCardProps {
 
 export function ReviewCard({ name, date, description }: ReviewCardProps) {
   return (
-    <div className="flex flex-col whitespace-pre-wrap bg-white px-6 py-4 max-w-[310px] rounded-xl">
+    <div className="flex flex-col bg-white px-6 py-4 max-w-[310px] rounded-xl">
       <h2 className="font-bold">{name}</h2>
 
       <div className="flex items-center justify-between mt-4 flex-wrap gap-y-4">
