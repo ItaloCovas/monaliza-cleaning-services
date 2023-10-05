@@ -2,12 +2,15 @@ import { useState } from 'react';
 import { FiArrowRight, FiArrowLeft } from 'react-icons/fi';
 
 import { RxDot, RxDotFilled } from 'react-icons/rx';
+import { cn } from '../../app/utils/cn';
 
 interface CarouselProps {
   slides: { url: string }[];
+
+  className?: string;
 }
 
-export function Carousel({ slides }: CarouselProps) {
+export function Carousel({ slides, className }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -27,7 +30,18 @@ export function Carousel({ slides }: CarouselProps) {
   };
 
   return (
-    <div className="max-w-[560px] h-[500px] w-full m-auto  px-4 relative group rounded-2xl">
+    <div
+      className={cn(
+        'max-w-[560px] h-[400px] w-full m-auto relative group rounded-2xl',
+        className
+      )}
+    >
+      <button className=" absolute top-[50%] -translate-x-0 translate-y-[-50%] left-[-50px] text-2xl rounded-full p-1 bg-white text-blue-0 cursor-pointer">
+        <FiArrowLeft onClick={prevSlide} size={30} />
+      </button>
+      <button className=" absolute top-[50%] -translate-x-0 translate-y-[-50%] right-[-50px] text-2xl rounded-full p-1 bg-white text-blue-0 cursor-pointer">
+        <FiArrowRight onClick={nextSlide} size={30} />
+      </button>
       <div
         style={{
           backgroundImage: `url(${slides[currentIndex].url})`,
@@ -36,20 +50,13 @@ export function Carousel({ slides }: CarouselProps) {
         }}
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500 "
       ></div>
-      {/* Left Arrow */}
-      <div className=" absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-1 bg-white text-pink-0 cursor-pointer">
-        <FiArrowLeft onClick={prevSlide} size={30} />
-      </div>
-      {/* Right Arrow */}
-      <div className=" absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-1 bg-white text-pink-0 cursor-pointer">
-        <FiArrowRight onClick={nextSlide} size={30} />
-      </div>
+
       <div className="flex top-4 justify-center py-2">
         {slides.map((_slide, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
-            className="cursor-pointer text-pink-0 text-3xl"
+            className="cursor-pointer text-blue-0 text-3xl"
           >
             {currentIndex === slideIndex ? <RxDotFilled /> : <RxDot />}
           </div>

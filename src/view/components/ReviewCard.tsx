@@ -1,58 +1,34 @@
-import { cn } from '../../app/utils/cn';
+import { RxStarFilled } from 'react-icons/rx';
+import { FcGoogle } from 'react-icons/fc';
 
 interface ReviewCardProps {
-  src: string;
   name: string;
-  positive: string;
+
+  date: string;
 
   description: string;
-  service: string;
-
-  className?: string;
-
-  namePosition?: string;
-
-  iconPosition?: string;
 }
 
-export function ReviewCard({
-  src,
-  name,
-  positive,
-  service,
-  description,
-  className,
-  namePosition,
-  iconPosition
-}: ReviewCardProps) {
+export function ReviewCard({ name, date, description }: ReviewCardProps) {
   return (
-    <div
-      className={cn(
-        'bg-white w-fit max-w-full font-medium text-xl h-fit px-4 py-6 md:px-8 md:py-10 rounded-[30px] whitespace-pre-wrap flex flex-col justify-between flex-grow relative',
-        className
-      )}
-    >
-      <img
-        src={src}
-        alt="Icon"
-        className={cn('w-12 mb-2 md:w-16 absolute top-[-30px]', iconPosition)}
-      />
-      <h2
-        className={cn(
-          'text-lg my-2 font-bold md:text-xl absolute top-[-35px] ml-8 lg:ml-4 overflow-hidden text-overflow-ellipsis whitespace-nowrap',
-          namePosition
-        )}
-      >
-        {name}
-      </h2>
-      <p className="text-lg mb-5 text-gray-700 md:text-base">
-        <strong>Positive: </strong>
-        {positive}
-      </p>
-      <p className="text-lg mb-5 md:text-base">{description}</p>
-      <p className="text-lg text-gray-700 md:text-base">
-        <strong>Service: </strong>
-        {service}
+    <div className="flex flex-col whitespace-pre-wrap bg-white px-6 py-4 max-w-[310px] rounded-xl">
+      <h2 className="font-bold">{name}</h2>
+
+      <div className="flex items-center justify-between mt-4 flex-wrap gap-y-4">
+        <div className="text-3xl flex gap-2">
+          <FcGoogle />
+          <span className="text-lg text-gray-600">{date}</span>
+        </div>
+        <div className="text-yellow-500 text-lg flex gap-1 ml-1">
+          <RxStarFilled />
+          <RxStarFilled />
+          <RxStarFilled />
+          <RxStarFilled />
+          <RxStarFilled />
+        </div>
+      </div>
+      <p className="mt-6 text-[15px] flex-grow overflow-hidden overflow-ellipsis">
+        {description}
       </p>
     </div>
   );

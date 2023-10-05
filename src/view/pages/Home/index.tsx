@@ -1,11 +1,21 @@
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import {
+  Navigation,
+  Autoplay,
+  Pagination,
+  Scrollbar,
+  FreeMode,
+  Thumbs
+} from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/bundle';
 
 import pen from '../../../assets/icons/pen.svg';
 import brush from '../../../assets/icons/brush.svg';
 import leaf from '../../../assets/icons/leaf.svg';
-import bulldoser from '../../../assets/icons/bulldoser.svg';
 
-import user from '../../../assets/icons/user.png';
 import vacuum from '../../../assets/vacuum.png';
 import hall from '../../../assets/hall.png';
 import before1 from '../../../assets/before1.jpeg';
@@ -15,10 +25,27 @@ import after2 from '../../../assets/after2.jpeg';
 
 import { Card } from '../../components/Card';
 import { Divider } from '../../components/Divider';
-import { ReviewCard } from '../../components/ReviewCard';
 import { Carousel } from '../../components/Carousel';
+import { ReviewCard } from '../../components/ReviewCard';
+import { useState } from 'react';
+import { RxChevronLeft, RxChevronRight } from 'react-icons/rx';
+import { useWindowWidth } from '../../../app/hooks/useWindowWidth';
+
+export interface SliderProps {
+  isBeginning: boolean;
+
+  isEnd: boolean;
+}
 
 export function Home() {
+  const swiper = useSwiper();
+  const windowWidth = useWindowWidth();
+
+  const [sliderState, setSliderState] = useState<SliderProps>({
+    isBeginning: false,
+    isEnd: false
+  });
+
   const slides = [
     {
       url: before1
@@ -39,24 +66,18 @@ export function Home() {
       <div className="flex flex-wrap justify-center items-center gap-6 h-fit mt-[-100px]">
         <Card
           src={pen}
-          title="END OF TENANCY"
-          description="This is a type of option that gives you the right to buy a stock at a
-        specified price (strike price) before a certain expiration date."
+          title="ONE-TIME CLEANING"
+          description="Whether you need a deep cleaning, move-in cleaning, move-out cleaning, or simply want your home to be dust-free and pristine post construction, our one-time cleaning will leave your space feeling brand new."
         />
         <Card
           src={brush}
-          title="DEEP CLEANING"
-          description="This is a type of option that gives you the right to buy a stock at a specified price (strike price) before a certain expiration date."
+          title="COMMERCIAL AND JANITORIAL CLEANING"
+          description="From office spaces to retail stores, from medical offices to banks, our cleaning team has the experience of providing careful and thorough commercial cleaning for businesses in the area."
         />
         <Card
           src={leaf}
-          title="SPRING CLEANING"
-          description="This is a type of option that gives you the right to buy a stock at a specified price (strike price) before a certain expiration date."
-        />
-        <Card
-          src={bulldoser}
-          title="AFTER BUILDERS CLEANING"
-          description="This is a type of option that gives you the right to buy a stock at a specified price (strike price) before a certain expiration date."
+          title="STANDARD CLEANING"
+          description="There are plenty of reasons why keeping up with house cleaning can be challenging. For top-quality cleaning in the area, rely on us. We offer a wide range of cleaning services that take the stress out of home upkeep."
         />
       </div>
 
@@ -72,23 +93,177 @@ export function Home() {
         <Carousel slides={slides} />
       </div>
 
-      <div className="flex justify-center flex-col items-center lg:flex-row lg:gap-x-20 p-20 gap-4 w-full p-20 bg-gray-0">
+      <div className="flex justify-center flex-col items-center lg:flex-row lg:gap-x-20 pt-20 gap-4 w-full p-20 bg-gray-0">
+        <div className="lg:w-1/2 hidden w-0 lg:block">
+          <img src={hall} alt="Hall" className=" rounded-lg" />
+        </div>
+        <div className="lg:w-1/2 w-full flex justify-center flex-col font-medium">
+          <h1 className="text-3xl font-bold mb-0">Services:</h1>
+          <ul className="list-none mt-4 mb-10">
+            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-blue-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem]">
+              Standard Cleaning
+            </li>
+
+            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-blue-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
+              One-time Cleaning
+            </li>
+
+            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-blue-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
+              Commercial and Janitorial Cleaning
+            </li>
+
+            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-blue-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
+              Deep Cleaning
+            </li>
+          </ul>
+
+          <Link
+            to="/services"
+            className="text-2xl underline font-bold text-blue-0 mt-2"
+          >
+            More services
+          </Link>
+        </div>
+      </div>
+
+      <div className="p-20 flex flex-col gap-20 justify-center lg:justify-start relative bg-gray-100">
+        <h2 className="text-center text-3xl font-bold">Reviews</h2>
+        <div className="w-full">
+          <Swiper
+            slidesPerView={windowWidth >= 500 ? 'auto' : 1.1}
+            modules={[
+              Navigation,
+              Autoplay,
+              Pagination,
+              Scrollbar,
+              FreeMode,
+              Thumbs
+            ]}
+            autoplay={true}
+            loop={true}
+            spaceBetween={20}
+            onSlideChange={(swiper) => {
+              setSliderState({
+                isBeginning: swiper.isBeginning,
+                isEnd: swiper.isEnd
+              });
+            }}
+          >
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+          </Swiper>
+          <button
+            className="py-3 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40 absolute right-0 top-1/2 -translate-y-1/2 trans z-[99]"
+            onClick={() => swiper.slideNext()}
+            disabled={sliderState.isEnd}
+          >
+            <RxChevronRight className=" text-blue-0 w-12 h-12" />
+          </button>
+          <button
+            className="py-3 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40 absolute top-1/2 -translate-y-1/2 left-0  z-[99]"
+            onClick={() => swiper.slidePrev()}
+            disabled={sliderState.isBeginning}
+          >
+            <RxChevronLeft className=" text-blue-0 w-12 h-12" />
+          </button>
+        </div>
+        <Link
+          to="/reviews"
+          className="text-2xl text-center md:text-left lg:text-left underline font-bold text-blue-0 "
+        >
+          More reviews
+        </Link>
+      </div>
+
+      <div className="flex justify-center flex-col items-center lg:flex-row lg:gap-x-20 p-20 gap-4 w-full bg-gray-0">
         <div className="lg:w-1/2 w-full flex justify-center flex-col  gap-4">
           <h1 className="text-3xl font-bold mb-0">A little bit about us:</h1>
           <p className="text-xl font-medium mb-2 whitespace-pre-wrap">
-            Monaliza Cleaning Services, all care that your home deserves! We are
-            a dedicated and passionate team committed to raising the standards
-            of cleanliness for homes and businesses throughout our community.
+            Do you need a light, one-time cleaning? Or perhaps a major after
+            construction/remodel or have experienced a hoarding issue requiring
+            a complete clean out? No job is too big or too small. We do it ALL!
+            If you're looking for and expect that “white glove” cleaning, you've
+            come to the right place.
           </p>
           <p className="text-xl font-medium">
-            We believe that a clean space goes beyond aesthetics; it directly
-            impacts the quality of life and productivity. That's why we are
-            committed to providing high-quality cleaning services that transform
-            spaces into truly welcoming places.
+            Your satisfaction is our priority, we want you to feel comfortable
+            with our family friendly cleaners and provide quality cleaning
+            service. So If you are looking for the best cleaning experience,
+            quality, highly trained professionals, along with competitive
+            pricing we got you covered! Give us a call now and we'll get it done
+            right! We are insured and bonded.
           </p>
           <Link
             to="/about-us"
-            className="text-2xl underline font-bold text-pink-0"
+            className="text-2xl underline font-bold text-blue-0"
           >
             More about us
           </Link>
@@ -96,80 +271,6 @@ export function Home() {
         <div className="lg:w-1/2 hidden w-0 lg:block">
           <img src={vacuum} alt="Vacuum" className=" rounded-lg" />
         </div>
-      </div>
-
-      <div className="flex justify-center flex-col items-center lg:flex-row lg:gap-x-20 pt-20 gap-4 w-full p-20 bg-gray-100">
-        <div className="lg:w-1/2 hidden w-0 lg:block">
-          <img src={hall} alt="Hall" className=" rounded-lg" />
-        </div>
-        <div className="lg:w-1/2 w-full flex justify-center flex-col font-medium">
-          <h1 className="text-3xl font-bold mb-0">Services:</h1>
-          <ul className="list-none mt-4 mb-10">
-            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-pink-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem]">
-              Deep Cleaning
-            </li>
-
-            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-pink-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
-              Standard Cleaning
-            </li>
-
-            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-pink-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
-              Vacation Cleaning
-            </li>
-
-            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-pink-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
-              Office Cleaning
-            </li>
-
-            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-pink-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
-              Move in/Move out Cleaning
-            </li>
-          </ul>
-
-          <Link
-            to="/services"
-            className="text-2xl underline font-bold text-pink-0 mt-2"
-          >
-            More services
-          </Link>
-        </div>
-      </div>
-
-      <div className="p-20 flex flex-col gap-20 justify-center lg:justify-start relative bg-gray-0">
-        <ReviewCard
-          className="self-start"
-          iconPosition="left-[-10px] lg:left-[-30px]"
-          src={user}
-          name="Anna-lynn Monroe"
-          positive="Professionalism, Punctuality, Quality, Responsiveness, Value"
-          service="Deep clean"
-          description="Monaliza Cleaning Services is amazing! Great attention to detail, friendly, and goes above and beyond! The best service! Truly a wonderful experience every time! ❤ "
-        />
-        <ReviewCard
-          className="self-end"
-          namePosition="lg:ml-0 right-[60px] lg:right-[70px]"
-          iconPosition="right-[-10px]"
-          src={user}
-          name="Aracely Rankin"
-          positive="Professionalism, Punctuality, Value"
-          service="General housekeeping, Deep clean"
-          description="It is my pleasure to recommend Monaliza’s Cleaning Services. Monaliza has been cleaning our home for almost a year. She is very professional, polite, and friendly..."
-        />
-        <ReviewCard
-          className="self-start"
-          iconPosition="left-[-10px] lg:left-[-30px]"
-          src={user}
-          name="Lauren Mocko"
-          positive="Quality"
-          service="Standard cleaning, Deep clean"
-          description="Monaliza does a wonderful job cleaning. I fully appreciate the attention to detail and how clean my house is after her cleanings. I highly recommend her business!"
-        />
-        <Link
-          to="/reviews"
-          className="text-2xl text-center md:text-left lg:text-left underline font-bold text-pink-0 "
-        >
-          More reviews
-        </Link>
       </div>
     </section>
   );

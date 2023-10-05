@@ -1,4 +1,15 @@
 import { Carousel } from '../../components/Carousel';
+import {
+  Navigation,
+  Autoplay,
+  Pagination,
+  Scrollbar,
+  FreeMode,
+  Thumbs
+} from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/bundle';
 
 import before1 from '../../../assets/before1.jpeg';
 import after1 from '../../../assets/after1.jpeg';
@@ -12,8 +23,12 @@ import before5 from '../../../assets/before5.jpeg';
 import after5 from '../../../assets/after5.jpeg';
 import before6 from '../../../assets/before6.jpeg';
 import after6 from '../../../assets/after6.jpeg';
-import user from '../../../assets/icons/user.png';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { useState } from 'react';
+import { SliderProps } from '../Home';
 import { ReviewCard } from '../../components/ReviewCard';
+import { RxChevronLeft, RxChevronRight } from 'react-icons/rx';
+import { useWindowWidth } from '../../../app/hooks/useWindowWidth';
 
 export function Reviews() {
   const slidesOne = [
@@ -70,6 +85,14 @@ export function Reviews() {
     }
   ];
 
+  const swiper = useSwiper();
+  const windowWidth = useWindowWidth();
+
+  const [sliderState, setSliderState] = useState<SliderProps>({
+    isBeginning: false,
+    isEnd: false
+  });
+
   return (
     <section className="text-black h-fit w-full pt-10 bg-gray-0">
       <h1 className="text-center font-bold px-20 text-3xl">
@@ -87,63 +110,113 @@ export function Reviews() {
 
       <div className="p-20 flex flex-col gap-20 justify-center lg:justify-start relative bg-gray-100">
         <h2 className="text-center text-3xl font-bold">Reviews</h2>
-        <ReviewCard
-          className="self-start"
-          iconPosition="left-[-10px] lg:left-[-30px]"
-          src={user}
-          name="Anna-lynn Monroe"
-          positive="Professionalism, Punctuality, Quality, Responsiveness, Value"
-          service="Deep clean"
-          description="Monaliza Cleaning Services is amazing! Great attention to detail, friendly, and goes above and beyond! The best service! Truly a wonderful experience every time! ❤ "
-        />
-        <ReviewCard
-          className="self-end"
-          namePosition="lg:ml-0 right-[60px] lg:right-[70px]"
-          iconPosition="right-[-10px]"
-          src={user}
-          name="Aracely Rankin"
-          positive="Professionalism, Punctuality, Value"
-          service="General housekeeping, Deep clean"
-          description="It is my pleasure to recommend Monaliza’s Cleaning Services. Monaliza has been cleaning our home for almost a year. She is very professional, polite, and friendly..."
-        />
-        <ReviewCard
-          className="self-start"
-          iconPosition="left-[-10px] lg:left-[-30px]"
-          src={user}
-          name="Lauren Mocko"
-          positive="Quality"
-          service="Standard cleaning, Deep clean"
-          description="Monaliza does a wonderful job cleaning. I fully appreciate the attention to detail and how clean my house is after her cleanings. I highly recommend her business!"
-        />
-        <ReviewCard
-          className="self-end"
-          namePosition="lg:ml-0 right-[60px] lg:right-[70px]"
-          iconPosition="right-[-10px]"
-          src={user}
-          name="Sid Sahni"
-          positive="Professionalism, Punctuality, Quality, Responsiveness, Value"
-          service="Standard cleaning"
-          description="I am so happy and pleased with Monaliza cleaning services. They are professional, friendly and do a fantastic job with cleaning our home. The best part is Monaliza’s positive attitude – she takes pride in her work and goes above and beyond to make sure the work she does is of high standard."
-        />
-        <ReviewCard
-          className="self-start"
-          iconPosition="left-[-10px] lg:left-[-30px]"
-          src={user}
-          name="Betsy Andrews"
-          positive="Professionalism, Punctuality, Quality, Responsiveness"
-          service="Standard cleaning, Deep clean"
-          description="Very professional- I love coming into my home after they have cleaned - it smells clean and looks wonderful!"
-        />
-        <ReviewCard
-          className="self-end"
-          namePosition="lg:ml-0 right-[60px] lg:right-[70px]"
-          iconPosition="right-[-10px]"
-          src={user}
-          name="Aracely Rankin"
-          positive="Professionalism, Punctuality, Value"
-          service="General housekeeping, Deep clean"
-          description="It is my pleasure to recommend Monaliza’s Cleaning Services. Monaliza has been cleaning our home for almost a year. She is very professional, polite, and friendly..."
-        />
+        <div className="w-full">
+          <Swiper
+            slidesPerView={windowWidth >= 500 ? 'auto' : 1.1}
+            modules={[
+              Navigation,
+              Autoplay,
+              Pagination,
+              Scrollbar,
+              FreeMode,
+              Thumbs
+            ]}
+            autoplay={{ disableOnInteraction: true, delay: 2000 }}
+            loop={true}
+            spaceBetween={20}
+            onSlideChange={(swiper) => {
+              setSliderState({
+                isBeginning: swiper.isBeginning,
+                isEnd: swiper.isEnd
+              });
+            }}
+          >
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+            <SwiperSlide className="!w-fit">
+              <ReviewCard
+                name="Hillary Stern"
+                date="Set, 2023"
+                description="Monaliza is an excellent cleaner and company. They are timely, detail
+              oriented, professional and consistent. I love the little details of
+              creative flowers and designs they make from the toilet paper and paper
+              towels. Always sweet and friendly as well."
+              />
+            </SwiperSlide>
+          </Swiper>
+          <button
+            className="py-2 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40 absolute right-0 top-[60%] -translate-y-[60%] trans z-[99]"
+            onClick={() => swiper.slideNext()}
+            disabled={sliderState.isEnd}
+          >
+            <RxChevronRight className=" text-blue-0 w-12 h-12" />
+          </button>
+          <button
+            className="py-2 pl-2.5 pr-3.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40 absolute top-[60%] -translate-y-[60%] left-0  z-[99]"
+            onClick={() => swiper.slidePrev()}
+            disabled={sliderState.isBeginning}
+          >
+            <RxChevronLeft className=" text-blue-0 w-12 h-12" />
+          </button>
+        </div>
       </div>
     </section>
   );

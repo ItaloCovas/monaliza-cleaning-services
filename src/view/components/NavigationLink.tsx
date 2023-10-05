@@ -11,7 +11,9 @@ export function NavigationLink({ to, label }: NavigationLinkProps) {
   return (
     <Link
       to={to}
-      className={pathname === to ? 'border-b-[1px] border-pink-0' : ''}
+      className={
+        pathname === to ? 'border-b-[2px] border-blue-0 font-bold' : ''
+      }
     >
       {label}
     </Link>

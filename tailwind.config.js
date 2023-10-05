@@ -13,8 +13,8 @@ export default {
         gray: {
           0: '#E5E4E4'
         },
-        pink: {
-          0: '#E941A1'
+        blue: {
+          0: '#41ADD9'
         }
       }
     }
