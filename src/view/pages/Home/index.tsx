@@ -1,5 +1,8 @@
+import { useState } from 'react';
+import { RxStarFilled } from 'react-icons/rx';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import {
   Navigation,
   Autoplay,
@@ -23,16 +26,16 @@ import after1 from '../../../assets/after1.jpeg';
 import before2 from '../../../assets/before2.jpeg';
 import after2 from '../../../assets/after2.jpeg';
 import guarantee from '../../../assets/guarantee.png';
+import pet from '../../../assets/pet.png';
 
 import { Card } from '../../components/Card';
 import { Divider } from '../../components/Divider';
 import { Carousel } from '../../components/Carousel';
 import { ReviewCard } from '../../components/ReviewCard';
-import { useState } from 'react';
-import { RxStarFilled } from 'react-icons/rx';
 import { useWindowWidth } from '../../../app/hooks/useWindowWidth';
 import { SwiperButton } from '../../components/SwiperButton';
 import { reviews } from '../../../app/constants/reviews';
+import { MailSection } from '../../components/MailSection';
 
 export interface SliderProps {
   isBeginning: boolean;
@@ -89,7 +92,7 @@ export function Home() {
       <div className="p-8 pt-10 bg-gray-100">
         <Divider />
         <h2 className="text-2xl text-center font-bold">
-          Why people choose us?
+          Why make us your first choice?
         </h2>
         <h2 className="text-2xl text-center font-bold">See for yourself</h2>
       </div>
@@ -121,13 +124,24 @@ export function Home() {
             <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-blue-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
               Deep Cleaning
             </li>
+
+            <li className="text-xl font-medium relative pl-6 before:content-['\2022'] before:text-blue-0 before:font-bold before:inline-block before:w-4 before:ml-[-1rem] mt-6">
+              Spring Cleaning
+            </li>
           </ul>
 
-          <img
-            src={guarantee}
-            alt="Guarantee sign"
-            className="w-40 h-40 mb-10"
-          />
+          <div className="flex items-center flex-wrap gap-x-8">
+            <img
+              src={guarantee}
+              alt="Guarantee sign"
+              className="w-16 h-16 md:w-24 md:h-24 mb-10"
+            />
+            <img
+              src={pet}
+              alt="Pet friendly sign"
+              className="w-16 h-16 md:w-24 md:h-24 mb-10"
+            />
+          </div>
 
           <Link
             to="/services"
@@ -208,19 +222,18 @@ export function Home() {
         <div className="lg:w-1/2 w-full flex justify-center flex-col  gap-4">
           <h1 className="text-3xl font-bold mb-0">A little bit about us:</h1>
           <p className="text-xl font-medium mb-2 whitespace-pre-wrap">
-            Do you need a light, one-time cleaning? Or perhaps a major after
-            construction/remodel or have experienced a hoarding issue requiring
-            a complete clean out? No job is too big or too small. We do it ALL!
-            If you're looking for and expect that “white glove” cleaning, you've
-            come to the right place.
+            Do you need a light, one time cleaning? Or maybe a deep cleaning
+            after a construction/home remodeling or there~s a lot of things
+            inside your house you don't need anymore? No job is too big or too
+            small. We got it all for you. If you're expecting that "white glove"
+            cleaning, you found the right place.
           </p>
           <p className="text-xl font-medium">
-            Your satisfaction is our priority, we want you to feel comfortable
-            with our family friendly cleaners and provide quality cleaning
-            service. So If you are looking for the best cleaning experience,
-            quality, highly trained professionals, along with competitive
-            pricing we got you covered! Give us a call now and we'll get it done
-            right! We are insured and bonded.
+            Your comfort and satisfaction is our goal. we want you to have a
+            great experience with our friendly team to provide you the best
+            quality cleaning services. So if you're looking for high trained
+            professionals and also competitive pricing, we got you covered!Give
+            us a call and we'll get it done.
           </p>
           <Link
             to="/about-us"
@@ -233,6 +246,8 @@ export function Home() {
           <img src={vacuum} alt="Vacuum" className=" rounded-lg" />
         </div>
       </div>
+
+      <MailSection />
     </section>
   );
 }

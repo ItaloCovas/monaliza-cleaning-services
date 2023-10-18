@@ -16,8 +16,8 @@ export function Map() {
   const initialMarkers = [
     {
       position: {
-        lat: 41.764513,
-        lng: -72.197184
+        lat: 41.779416,
+        lng: -72.513503
       },
       label: { color: 'white', text: 'P1' },
       draggable: true
@@ -33,8 +33,8 @@ export function Map() {
   };
 
   const center = {
-    lat: 41.764513,
-    lng: -72.197184
+    lat: 41.779416,
+    lng: -72.513503
   };
 
   const mapClicked = (event: google.maps.MapMouseEvent) => {

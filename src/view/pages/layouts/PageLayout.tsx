@@ -12,7 +12,7 @@ export function PageLayout() {
   function handleTitle(pathname: string) {
     switch (pathname) {
       case '/':
-        return 'Your home cleaner than ever, leave the dirty work to us.';
+        return 'Want a freshly cleaned home and get your free time back? Call us!';
       case '/services':
         return 'Our services';
       case '/reviews':
@@ -23,12 +23,12 @@ export function PageLayout() {
   }
 
   return (
-    <div className="w-full h-full bg-gray-0 text-black font-quicksand select-none relative">
+    <div className="w-full h-full bg-gray-100 text-black font-quicksand select-none relative">
       <header className="flex flex-col justify-center items-center w-full h-fit py-8 px-10 lg:py-0 bg-gray-0 text-blue-0 lg:flex-row lg:justify-between lg:items-center">
         <img
           src={logo}
           alt="Logo"
-          className="w-[400px] lg:h-[150px] lg:w-[200px]"
+          className="w-[400px] lg:h-auto lg:w-[300px]"
         />
         <nav className="flex flex-wrap text-lg justify-center items-center font-medium gap-x-4 text-md gap-y-3 lg:flex-row lg:gap-x-10 lg:gap-y-0">
           <NavigationLink to="/" label="Home" />
@@ -43,24 +43,24 @@ export function PageLayout() {
         <h1 className="text-5xl text-center mb-4 max-w-2xl font-semibold lg:leading-[68h1x] lg:text-left">
           {handleTitle(pathname)}
         </h1>
-        <span className="text-2xl font-semibold">Phone: +1 860-860-1358</span>
+        <span className="text-2xl font-semibold">Phone: +1 860-890-1358</span>
         <span className="text-2xl font-semibold">Phone: +1 860 890-7578</span>
         <Button className="h-12 w-44 mt-6 mb-10" />
       </section>
       <main className="w-full h-fit bg-gray-0">
         <Outlet />
       </main>
-      <footer className="bg-white h-fit w-full flex flex-col flex-wrap justify-between items-center px-20 py-10 md:py-5 lg:py-5  lg:px-10 lg:flex-row">
+      <footer className="bg-gray-0 h-fit w-full flex flex-col flex-wrap justify-between items-center px-20 py-10 md:py-5 lg:py-5  lg:px-10 lg:flex-row">
         <img
           src={logo}
           alt="Logo"
-          className="lg:mb-0 w-[400px] lg:h-[150px] lg:w-[200px]"
+          className="lg:mb-0 w-[400px] lg:h-auto lg:w-[300px]"
         />
 
         <div className="flex flex-col lg:mt-0 text-black">
           <div className="flex flex-col text-lg whitespace-nowrap mr-2 h-full  font-bold justify-center lg:mr-8">
             <span className="text-bold text-center">Phones:</span>
-            <span>+1 860-860-1358</span>
+            <span>+1 860-890-1358</span>
             <span>+1 860 890-7578</span>
           </div>
 

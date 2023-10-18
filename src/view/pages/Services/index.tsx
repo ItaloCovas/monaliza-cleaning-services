@@ -12,19 +12,19 @@ export function Services() {
       <div className="flex flex-wrap justify-center items-center gap-14 h-fit p-20">
         <ServicesCard
           title="Standard Cleaning"
-          description="There are plenty of reasons why keeping up with house cleaning can be challenging. For top-quality cleaning in the area, rely on us. We offer a wide range of cleaning services that take the stress out of home upkeep."
+          description="There are so many reasons that keep up with your house cleaning is a challege. So, if you want a high quality service on keeping your space clean, count on us and call today. We offer you an expansive type of services. And you and your family can enjoy the best comfort feeling with no stress."
           icon={brush2}
           iconPosition="left-[-40px] top-[-40px]"
         />
 
         <ServicesCard
-          title="One-time Cleaning"
-          description="Whether you need a deep cleaning, move-in cleaning, move-out cleaning, or simply want your home to be dust-free and pristine post construction, our one-time cleaning will leave your space feeling brand new. "
+          title="One-time Cleaning (Deep and Spring Cleaning)"
+          description="Need a deep cleaning, move-in or move out cleaning, post construction or just want a free dusty home? Our one-time cleaning will make your space look brand new. "
           icon={hanger}
         />
         <ServicesCard
           title="Commercial and Janitorial Cleaning"
-          description="From office spaces to retail stores, from medical offices to banks, our cleaning team has the experience of providing careful and thorough commercial cleaning for businesses in the area."
+          description="Office Spaces, Medical offices, Banks. All the commercial spaces, our team will make sure to provide you the best experience on commercial cleaning you need."
           icon={thrash}
           iconPosition="left-[-40px] top-[-45px]"
         />

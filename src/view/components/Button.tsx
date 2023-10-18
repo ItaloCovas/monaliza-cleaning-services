@@ -9,7 +9,7 @@ export function Button({ className, ...props }: ButtonProps) {
   return (
     <div>
       {windowWidth < 600 ? (
-        <a href="tel:+18608601358">
+        <a href="tel:+18608901358">
           <button
             {...props}
             className={cn(
