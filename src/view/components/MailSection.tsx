@@ -56,7 +56,7 @@ export function MailSection() {
   return (
     <div className="bg-gray-100 p-20">
       <h1 className="text-center my-8 text-3xl font-bold">
-        Send us an contact email!
+        Send us a contact email!
       </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <Input
