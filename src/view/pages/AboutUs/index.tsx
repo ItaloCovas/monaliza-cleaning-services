@@ -3,6 +3,7 @@ import { RiMapPin2Line } from 'react-icons/ri';
 import services from '../../../assets/services.png';
 import mission from '../../../assets/mission.jpg';
 import { Map } from '../../components/Map';
+import { MailSection } from '../../components/MailSection';
 
 export function AboutUs() {
   return (
@@ -81,6 +82,8 @@ export function AboutUs() {
 
         <Map />
       </div>
+
+      <MailSection />
     </section>
   );
 }
