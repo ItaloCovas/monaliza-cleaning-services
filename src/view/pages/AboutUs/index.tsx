@@ -37,7 +37,7 @@ export function AboutUs() {
         </div>
       </div>
 
-      <div className="flex justify-center flex-col items-start lg:flex-row pt-10 gap-4 lg:gap-0 w-full px-20 py-10 bg-gray-100">
+      <div className="flex justify-center flex-col items-start lg:flex-row pt-10 gap-4 lg:gap-x-20 w-full px-20 py-10 bg-gray-100">
         <div className="lg:w-1/2 hidden w-0 lg:block">
           <img
             src={mission}
