@@ -28,7 +28,7 @@ export function PageLayout() {
         <img
           src={logo}
           alt="Logo"
-          className="w-[400px] lg:h-auto lg:w-[300px]"
+          className="w-[250px] lg:h-auto lg:w-[250px]"
         />
         <nav className="flex flex-wrap text-lg justify-center items-center font-medium gap-x-4 text-md gap-y-3 lg:flex-row lg:gap-x-10 lg:gap-y-0">
           <NavigationLink to="/" label="Home" />
@@ -54,7 +54,7 @@ export function PageLayout() {
         <img
           src={logo}
           alt="Logo"
-          className="lg:mb-0 w-[400px] lg:h-auto lg:w-[300px]"
+          className="lg:mb-0 w-[250px] lg:h-auto lg:w-[250px]"
         />
 
         <div className="flex flex-col lg:mt-0 text-black">

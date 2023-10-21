@@ -27,6 +27,7 @@ import before2 from '../../../assets/before2.jpeg';
 import after2 from '../../../assets/after2.jpeg';
 import guarantee from '../../../assets/guarantee.png';
 import pet from '../../../assets/pet.png';
+import insured from '../../../assets/insured.png';
 
 import { Card } from '../../components/Card';
 import { Divider } from '../../components/Divider';
@@ -134,12 +135,17 @@ export function Home() {
             <img
               src={guarantee}
               alt="Guarantee sign"
-              className="w-16 h-16 md:w-24 md:h-24 mb-10"
+              className="w-20 h-20 md:w-24 md:h-24 mb-10"
             />
             <img
               src={pet}
               alt="Pet friendly sign"
-              className="w-16 h-16 md:w-24 md:h-24 mb-10"
+              className="w-20 h-20 md:w-24 md:h-24 mb-10"
+            />
+            <img
+              src={insured}
+              alt="Fully insured sign"
+              className="w-20 h-20 md:w-24 md:h-24 mb-10"
             />
           </div>
 
